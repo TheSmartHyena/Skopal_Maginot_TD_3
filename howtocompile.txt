@@ -1,0 +1,26 @@
+Il peut être agréable dans le cas de petits projets de ne pas passer par un IDE pouvant peser des gigas et des gigas afin de compiler ses programmes.
+Ici ma problématique était d’y parvenir en Java !
+
+Voilà la procédure pour compiler un package que vous avez codé à la main.
+
+Tout d’abord, créez un dossier qui contiendra les sources de ce package, et déplacez-les à l’intérieur :
+
+$ mkdir monPackage/
+$ mv source_1.java source_2.java [...] source_n.java monPackage/
+
+… puis compilez le tout à l’aide de :
+
+$ javac monPackage/*.java
+
+Il ne vous reste plus qu’à exécuter le fichier .class contenant votre point d’entrée (main()) :
+
+$ java monPackage.classContenantLeMain
+
+javac -cp  ":/home/cabox/workspace/lib/junit-4.13.jar:/home/cabox/workspace/lib/mockito-all-1.10.19.jar" -d build @source.txt
+-cp ==> inclus les lib .jar au classpath 
+-d pour mettre dans le dosser build
+@source.txt contient la liste de tout les fichiers sources .javac
+  obtenu avec la ligne de commande: find -name "*.java" > source.txt
+Les deux post stackoverflow pour la solution au dessus: 
+https://stackoverflow.com/questions/9395207/how-to-include-jar-files-with-java-file-and-compile-in-command-prompt
+https://stackoverflow.com/questions/17140512/how-to-compile-multiple-java-files-when-there-are-java-files-in-other-packages
