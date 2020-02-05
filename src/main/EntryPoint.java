@@ -13,6 +13,8 @@ import factory.DaoFactory;
 import modele.Client;
 import vue.ClientVue;
 
+import java.lang.reflect.Method;
+
 public class EntryPoint {
 
 	public static void main(String[] args) throws Exception {
@@ -31,7 +33,16 @@ public class EntryPoint {
     
 		for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
-			System.out.println(client.getNom() + " "  + client.getPrenom());
+			System.out.println(client.getId() + " " + client.getNom() + " "  + client.getPrenom());
+      System.out.println(client.getClass().getName());
+      
+      
+      /*Class tClass = client.getClass();
+		  Method[] methods = tClass.getMethods();
+		  for (int j = 0;j < methods.length; j++) {
+			  System.out.println("public method: " + methods[j]);
+		  }*/
+      
 		}
     
     

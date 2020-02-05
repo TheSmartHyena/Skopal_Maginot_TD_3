@@ -73,35 +73,42 @@ public class XmlTools{
         String type = el.getElementsByTagName("type").item(0).getTextContent().trim();    
         String id = el.getAttribute("id").trim();
         
-        Client client = null;
-        if(type.equals("morale")){
-          
+        if(type.equals("morale")){  
           try{
-            client = getClient(ETypeClient.MORALE, nom, prenom);
-          }catch(Exception e){
-            e.printStackTrace();
-          }
+            Client client = getClient(ETypeClient.MORALE, nom, prenom);
+            client.setId(id);
             
-          String codeInsee = el.getElementsByTagName("codeInsee").item(0).getTextContent();
-          //client.setCodeInsee(codeInsee);
-          
+            String codeInsee = el.getElementsByTagName("codeInsee").item(0).getTextContent().trim();
+            //client.setCodeInsee(codeInsee);
+            
+            result.add(client);
+          }catch(Exception e){
+            e.printStackTrace();
+          }
+
         }else if(type.equals("physique")){
-          try{
-            client = getClient(ETypeClient.PHYSIQUE, nom, prenom);
+          try{            
+            Client client = getClient(ETypeClient.PHYSIQUE, nom, prenom);   
+            client.setId(id);
+            
+            String age = el.getElementsByTagName("age").item(0).getTextContent().trim();
+            //client.setAge(Integer.parseInt(age));
+            
+            result.add(client);
           }catch(Exception e){
             e.printStackTrace();
           }
           
-          String age = el.getElementsByTagName("age").item(0).getTextContent();
+          
           //client.setAge(Integer.parseInt(age));
           
         }else{
           throw new WrongClientTypeException("Mauvais type de client dans le fichier xml.");
         }           
         
-        System.out.println(client.getClass().getName());
+        //System.out.println(client.getClass().getName());
+        //client.setId(id);
         
-        result.add(client);
       }
       
     }
