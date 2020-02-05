@@ -43,19 +43,19 @@ public class TestDaoFactory {
 
 	@Test
 	public void testGetClientByIdSansMockito() {
-		assertEquals(null, daoClient.getClientById(1));
+		assertEquals(null, daoClient.getClientById("1"));
 	}
 
 	@Test
 	public void testGetClientByIdAvecMockito() throws Exception {
     System.out.println("Je passe par: testGetClientByIdAvecMockito");
 		daoClient = mock(MemoryClientDao.class);
-		when(daoClient.getClientById(anyInt())).thenReturn(getClient(MORALE, "JOYEUX", "STEPHANE"));
+		when(daoClient.getClientById("drg")).thenReturn(getClient(MORALE, "JOYEUX", "STEPHANE"));
     
-		assertNotNull(daoClient.getClientById(1));
+		assertNotNull(daoClient.getClientById("1"));
     
-		assertEquals("JOYEUX", daoClient.getClientById(1).getNom());
-		assertEquals("JOYEUX", daoClient.getClientById(3630).getNom());
+		assertEquals("JOYEUX", daoClient.getClientById("1").getNom());
+		assertEquals("JOYEUX", daoClient.getClientById("3630").getNom());
 	}
 
 	@Test

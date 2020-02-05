@@ -75,7 +75,6 @@ public class XmlClientDao implements IClientDao {
       
       myXmlTools.open();
       result = myXmlTools.getList();
-      myXmlTools.close();
       
     }catch(Exception e){
       System.out.println(e);
@@ -85,8 +84,21 @@ public class XmlClientDao implements IClientDao {
   }
 
   @Override
-  public Client getClientById(int id) {
-      return null;
+  public Client getClientById(String id){
+    
+    Client result = null; 
+    
+    try{
+      
+      myXmlTools.open();
+      result = myXmlTools.getClientById(id);
+      
+    }catch(Exception e){
+      System.out.println(e);
+    }
+    
+    return result;
+    
   }
 
 }

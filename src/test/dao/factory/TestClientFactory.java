@@ -24,9 +24,4 @@ public class TestClientFactory {
 		assertNotEquals(client, getClient(MORALE, "nom1", "prenom1"));
 	}
 
-	@Test
-	public void testInstanceImprimanteDeClientEstIdentique() throws Exception {
-		assertEquals(client.getImprimante(), getClient(MORALE, "nom1", "prenom1").getImprimante());
-	}
-
 }

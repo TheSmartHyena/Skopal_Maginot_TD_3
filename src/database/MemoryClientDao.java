@@ -64,7 +64,7 @@ public class MemoryClientDao implements IClientDao {
 	}
 
 	@Override
-	public Client getClientById(int id) {
+	public Client getClientById(String id) {
 		return null;
 	}
 

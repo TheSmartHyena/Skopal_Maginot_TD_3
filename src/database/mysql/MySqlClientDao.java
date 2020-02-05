@@ -74,7 +74,7 @@ public class MySqlClientDao implements IClientDao {
 	}
 
 	@Override
-	public Client getClientById(int id) {
+	public Client getClientById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

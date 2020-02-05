@@ -11,6 +11,7 @@ import modele.PersonnePhysique;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 import java.io.File;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -79,7 +80,7 @@ public class XmlTools{
             client.setId(id);
             
             String codeInsee = el.getElementsByTagName("codeInsee").item(0).getTextContent().trim();
-            //client.setCodeInsee(codeInsee);
+            ((PersonneMorale)client).setCodeInsee(codeInsee);
             
             result.add(client);
           }catch(Exception e){
@@ -92,23 +93,17 @@ public class XmlTools{
             client.setId(id);
             
             String age = el.getElementsByTagName("age").item(0).getTextContent().trim();
-            //client.setAge(Integer.parseInt(age));
+            ((PersonnePhysique)client).setAge(Integer.parseInt(age));
             
             result.add(client);
           }catch(Exception e){
             e.printStackTrace();
           }
-          
-          
-          //client.setAge(Integer.parseInt(age));
-          
+                 
         }else{
           throw new WrongClientTypeException("Mauvais type de client dans le fichier xml.");
         }           
-        
-        //System.out.println(client.getClass().getName());
-        //client.setId(id);
-        
+             
       }
       
     }
@@ -117,12 +112,36 @@ public class XmlTools{
     
   }
   
-  public Client getClientById(){
-    return null;
+  public Client getClientById(String id){
+    
+    Client result = null;
+    List<Client> clients = null;
+    
+    try{
+      clients = this.getList();
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+      
+    for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
+			Client client = (Client) iterator.next();
+      
+      System.out.println("A: " + client.getId());
+      System.out.println("B: " + id);
+      
+      if(client.getId().equals(id)){
+        result = client;
+        break;
+      }
+      
+    }
+    
+    return result;
+    
   }
   
   public void close(){
-    
+    // useless because of the garbage collector
   }
   
  

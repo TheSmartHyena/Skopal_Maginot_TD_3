@@ -11,6 +11,8 @@ import controleur.ClientControleur;
 import enumerations.persistance.EPersistance;
 import factory.DaoFactory;
 import modele.Client;
+import modele.PersonneMorale;
+import modele.PersonnePhysique;
 import vue.ClientVue;
 
 import java.lang.reflect.Method;
@@ -23,30 +25,33 @@ public class EntryPoint {
 		System.out.println("-------> III. Partie DAO : ");
 		
     DaoFactory daos = DaoFactory.getDaoFactory(EPersistance.XML);
-		//List<Client> clients = daos.getClientDao().getList();
+    // List tout les clients
     
-    //System.out.println(clients.size());
-    //Client testClient = getClient(PHYSIQUE, "JOYEUX", "LUCAS");
-    
-    // daos.getClientDao().read(2);
-    List<Client> clients = daos.getClientDao().getList();
-    
+    /*List<Client> clients = daos.getClientDao().getList();
 		for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
 			System.out.println(client.getId() + " " + client.getNom() + " "  + client.getPrenom());
-      System.out.println(client.getClass().getName());
+      //System.out.println(client.getClass().getName());
       
+      if(client instanceof PersonneMorale){
+        System.out.println("Code insee: ");
+        System.out.println(((PersonneMorale)client).getCodeInsee());
+      }else if(client instanceof PersonnePhysique){
+        System.out.println("Age: ");
+        System.out.println(((PersonnePhysique)client).getAge());
+      }
       
-      /*Class tClass = client.getClass();
-		  Method[] methods = tClass.getMethods();
-		  for (int j = 0;j < methods.length; j++) {
-			  System.out.println("public method: " + methods[j]);
-		  }*/
-      
-		}
+		}*/
     
-    
-    
+    // GetById()
+    /*
+    Client client = daos.getClientDao().getClientById("2");
+    if(client != null){
+      System.out.println(client.getId() + " " + client.getNom() + " "  + client.getPrenom());
+    }else{
+      System.out.println("Null client");
+    }*/
+
 	}
 
 }

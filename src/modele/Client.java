@@ -1,14 +1,10 @@
 package modele;
 
-import static factory.imprimante.ImprimanteSingletonFactory.getImprimanteInstance;
-
 public class Client {
 
 	private String id;
 	private String nom;
 	private String prenom;
-
-	private Imprimante imprimante;
 
 	public Client(String id, String nom, String prenom) {
 		this.id = id;
@@ -16,18 +12,12 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	public Imprimante getImprimante() {
-		return imprimante;
-	}
-
 	public String getId() {
 		return id;
 	}
 
-	public Client() {
-		this.imprimante = getImprimanteInstance();
-	}
-
+	public Client() {}
+	
 	public String getNom() {
 		return nom;
 

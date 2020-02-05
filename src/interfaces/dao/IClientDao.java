@@ -4,6 +4,6 @@ import modele.Client;
 
 public interface IClientDao extends IDao<Client> {
 
-	Client getClientById(int id);
+	Client getClientById(String id);
 
 }
