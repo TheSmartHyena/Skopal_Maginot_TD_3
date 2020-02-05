@@ -24,6 +24,7 @@ public class EntryPointTest {
     
     TestDaoFactory testeur = new TestDaoFactory();
     testeur.testGetNombreClientsAvecMockito();
+    testeur.testGetClientByIdAvecMockito();
 		
 	}
 }

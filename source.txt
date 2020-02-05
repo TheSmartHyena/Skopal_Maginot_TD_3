@@ -14,6 +14,7 @@
 ./src/database/mysql/TestConnectionDB.java
 ./src/database/mysql/ConnectionMySql.java
 ./src/database/mysql/DataBaseMySql.java
+./src/database/XmlClientDao.java
 ./src/database/DatabaseMockManager.java
 ./src/database/MemoryClientDao.java
 ./src/database/TestDaoFactory.java
@@ -33,5 +34,6 @@
 ./src/factory/ClientSingleFactory.java
 ./src/factory/MySqlDaoFactory.java
 ./src/factory/singleton/ClientSingletonFactory.java
+./src/factory/XmlDaoFactory.java
 ./src/factory/DaoFactory.java
 ./src/factory/imprimante/ImprimanteSingletonFactory.java

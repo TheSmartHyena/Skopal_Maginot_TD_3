@@ -15,7 +15,8 @@ public abstract class DaoFactory {
 			daoF = new MySqlDaoFactory();
 			break;
 		case XML:
-			throw new Exception("Not yet implemented");
+        daoF = new XmlDaoFactory();
+			//throw new Exception("Not yet implemented");
 		default:
 			break;
 		}

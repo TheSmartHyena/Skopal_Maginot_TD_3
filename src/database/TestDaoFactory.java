@@ -48,11 +48,14 @@ public class TestDaoFactory {
 
 	@Test
 	public void testGetClientByIdAvecMockito() throws Exception {
+    System.out.println("Je passe par: testGetClientByIdAvecMockito");
 		daoClient = mock(MemoryClientDao.class);
 		when(daoClient.getClientById(anyInt())).thenReturn(getClient(MORALE, "JOYEUX", "STEPHANE"));
+    
 		assertNotNull(daoClient.getClientById(1));
+    
 		assertEquals("JOYEUX", daoClient.getClientById(1).getNom());
-		assertEquals("JOYEUX", daoClient.getClientById(15).getNom());
+		assertEquals("JOYEUX", daoClient.getClientById(3630).getNom());
 	}
 
 	@Test
@@ -62,9 +65,9 @@ public class TestDaoFactory {
 		List<Client> clients = createClients();
 		daoClient = mock(MemoryClientDao.class);
 		when(daoClient.getList()).thenReturn(clients);
-		assertEquals(3, daoClient.getList().size());
+		assertEquals(2, daoClient.getList().size());
     
-    System.out.println(daoClient.getList().size());
+    //System.out.println(daoClient.getList().size());
 	}
 
 	private List<Client> createClients() throws Exception {
