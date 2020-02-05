@@ -239,6 +239,80 @@ public class XmlTools{
     
   }
   
+  public boolean updateClient(Client toUpdate){
+    
+    boolean result = false;
+    String toUpdateId = toUpdate.getId();
+    
+    // Itération de la liste des nodes 
+    for (int i=0; i < myNodeList.getLength(); i++) {
+      Node node = myNodeList.item(i);
+      if (node.getNodeType() == Node.ELEMENT_NODE) {
+        Element el = (Element) node;
+ 
+        String id = el.getAttribute("id").trim();
+        
+        if(toUpdateId.equals(id)){  
+          try{
+            result = updateNode(node, toUpdate);
+            
+          }catch(Exception e){
+            e.printStackTrace();
+          }
+
+        }                     
+      }      
+    }   
+    
+    this.writeFile();
+    System.out.println("Client updated");
+    
+    return result;
+    
+  }
+    
+  private boolean updateNode(Node node, Client toUpdate){
+    
+    boolean result = false;
+    
+    // Iteration sur les child du node au bon id
+    NodeList list = node.getChildNodes();
+    
+    try{
+      for (int temp = 0; temp < list.getLength(); temp++) {
+        
+        
+        Node childNode = list.item(temp);
+        if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+          Element childEl = (Element) childNode;
+          
+          System.out.println(childEl.getNodeName());
+          
+          if("nom".equals(childEl.getNodeName())) {
+            childEl.setTextContent(toUpdate.getNom());
+          }else if("prenom".equals(childEl.getNodeName())){
+            childEl.setTextContent(toUpdate.getPrenom());
+          }else if("id".equals(childEl.getNodeName())){
+           childEl.setTextContent(toUpdate.getId());
+          }else if( ("morale".equals(childEl.getNodeName()) || "physique".equals(childEl.getNodeName())) &&  toUpdate instanceof PersonneMorale){
+            childEl.setTextContent("morale");
+          }else if( ("morale".equals(childEl.getNodeName()) || "physique".equals(childEl.getNodeName())) && toUpdate instanceof PersonnePhysique){
+            childEl.setTextContent("physique");
+          }
+          
+          result = true;
+
+        }
+      }
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    
+    return result;
+    
+  } 
+                           
+  
   private void writeFile(){
     
     // Write the new file

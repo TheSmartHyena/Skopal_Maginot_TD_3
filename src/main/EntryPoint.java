@@ -70,6 +70,18 @@ public class EntryPoint {
     Client toDelete = daos.getClientDao().getClientById("68");
     
     daos.getClientDao().delete(toDelete);*/
+    
+    // update 
+    /*Client toCreate = factory.ClientFactory.getClient(MORALE, "PouetPouet", "Mdr");
+    toCreate.setId("68");
+    ((PersonneMorale)toCreate).setCodeInsee("68000");
+    daos.getClientDao().create(toCreate);
+    
+    Client toUpdate = daos.getClientDao().getClientById("68");
+    toUpdate.setNom("Issou");
+    toUpdate.setPrenom("Yatengaki");
+    
+    daos.getClientDao().update(toUpdate);*/
 
 	}
 

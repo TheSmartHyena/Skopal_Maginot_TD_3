@@ -49,7 +49,14 @@ public class XmlClientDao implements IClientDao {
 
   @Override
   public void update(Client objet) {
-    // TODO Auto-generated method stub
+    try{
+      
+      myXmlTools.open();
+      boolean result = myXmlTools.updateClient(objet);
+      
+    }catch(Exception e){
+      System.out.println(e);
+    }
 
   }
 
