@@ -13,38 +13,17 @@ import factory.DaoFactory;
 import modele.Client;
 import vue.ClientVue;
 
+import database.TestDaoFactory;
+
 public class EntryPointTest {
 
 	public static void main(String[] args) throws Exception {
     
-		//System.out.println("-------> I. Partie Factory - Singleton : ");
-		//Client client1 = getClient(MORALE, "JOYEUX", "STEPHANE");
-		//Client client2 = getClient(PHYSIQUE, "JOYEUX", "LUCAS");
-
-		//System.out.println("Clients sont identiques : " + (client1 == client2));
-		//System.out.println("Imprimantes sont identiques : " + (client1.getImprimante() == client2.getImprimante()));
-
-		//System.out.println("");
-		//System.out.println("-------> II. Partie MVC : ");
-		//ClientVue vue = new ClientVue();
-		//ClientControleur controleur = new ClientControleur(vue);
-		//vue.setControleur(controleur);
-		//controleur.getVue().afficherList();
-
 		System.out.println("");
 		System.out.println("-------> III. Partie Test du DAO : ");
+    
+    TestDaoFactory testeur = new TestDaoFactory();
+    testeur.testGetNombreClientsAvecMockito();
 		
-    DaoFactory daos = DaoFactory.getDaoFactory(EPersistance.MEMORY);
-    
-		List<Client> clients = daos.getClientDao().getList();
-    
-		for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
-			Client client = (Client) iterator.next();
-			System.out.println(client.getNom() + " "  + client.getPrenom());
-		}
-    
-    
-    
 	}
-
 }

@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import database.mysql.MySqlClientDao;
+import database.MemoryClientDao;
 import factory.ClientFactory;
 import factory.DaoFactory;
 import interfaces.dao.IClientDao;
@@ -47,7 +48,7 @@ public class TestDaoFactory {
 
 	@Test
 	public void testGetClientByIdAvecMockito() throws Exception {
-		daoClient = mock(MySqlClientDao.class);
+		daoClient = mock(MemoryClientDao.class);
 		when(daoClient.getClientById(anyInt())).thenReturn(getClient(MORALE, "JOYEUX", "STEPHANE"));
 		assertNotNull(daoClient.getClientById(1));
 		assertEquals("JOYEUX", daoClient.getClientById(1).getNom());
@@ -56,10 +57,14 @@ public class TestDaoFactory {
 
 	@Test
 	public void testGetNombreClientsAvecMockito() throws Exception {
+    
+    System.out.println("Je passe par ici");
 		List<Client> clients = createClients();
-		daoClient = mock(MySqlClientDao.class);
+		daoClient = mock(MemoryClientDao.class);
 		when(daoClient.getList()).thenReturn(clients);
-		assertEquals(2, daoClient.getList().size());
+		assertEquals(3, daoClient.getList().size());
+    
+    System.out.println(daoClient.getList().size());
 	}
 
 	private List<Client> createClients() throws Exception {

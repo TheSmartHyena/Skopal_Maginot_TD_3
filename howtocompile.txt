@@ -13,3 +13,4 @@ https://stackoverflow.com/questions/17140512/how-to-compile-multiple-java-files-
 
 Pour exécuter:
 java -cp .:build:****/*.class main.EntryPoint
+java -cp ".:build:****/*.class:/home/cabox/workspace/td3/Skopal_Maginot_TD_3/lib/mockito-all-1.10.19.jar:/home/cabox/workspace/td3/Skopal_Maginot_TD_3/lib/junit-4.13.jar" main.EntryPointTest
