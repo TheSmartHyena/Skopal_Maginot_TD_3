@@ -13,17 +13,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import java.io.File;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class XmlTools{
   
   private String myPath= "";
   private NodeList myNodeList;
+  private Document myDoc; 
   
   public XmlTools() throws IncorrectXmlToolsInstanciationException {
     // raise an error
@@ -33,6 +41,12 @@ public class XmlTools{
   public XmlTools(String path) {
       // This constructor has one parameter, name.
      myPath = path;
+     
+  }
+  
+    public XmlTools(NodeList nodelist) {
+      // This constructor has one parameter, name.
+     myNodeList = nodelist;
      
   }
   
@@ -52,6 +66,7 @@ public class XmlTools{
       Document doc = dBuilder.parse(inputFile);
       doc.getDocumentElement().normalize();
       myNodeList = doc.getElementsByTagName("client");
+      myDoc = doc;
       
     } catch (Exception e) {
       e.printStackTrace();
@@ -125,10 +140,7 @@ public class XmlTools{
       
     for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
-      
-      System.out.println("A: " + client.getId());
-      System.out.println("B: " + id);
-      
+            
       if(client.getId().equals(id)){
         result = client;
         break;
@@ -140,9 +152,64 @@ public class XmlTools{
     
   }
   
-  public void close(){
-    // useless because of the garbage collector
+  public boolean createClient(Client toCreate){
+    
+    boolean result = false;
+    
+    try{
+      
+      // Get root
+      Node clients = myDoc.getFirstChild();
+      
+      // On y ajoute un élement client vide
+      Element client = myDoc.createElement("client");
+      clients.appendChild(client);
+      
+      // On ajoute un id à notre élement vierge
+      Attr attr = myDoc.createAttribute("id");
+      attr.setValue(toCreate.getId());  
+      client.setAttributeNode(attr);
+      
+      // On ajoute les 4 éléments en fonction du type de client envoyé
+      client.appendChild(createElement("nom", toCreate.getNom()));
+      client.appendChild(createElement("prenom", toCreate.getPrenom()));
+            
+      if(toCreate instanceof PersonnePhysique){
+        client.appendChild(createElement("age", String.valueOf( ((PersonnePhysique)toCreate).getAge())) );
+        client.appendChild(createElement("type", "physique"));
+      }else if(toCreate instanceof PersonneMorale){
+        client.appendChild(createElement("codeInsee", ((PersonneMorale)toCreate).getCodeInsee()));
+        client.appendChild(createElement("prenom", "morale"));
+      }
+      
+      // Write the new file
+      TransformerFactory transformerFactory = TransformerFactory.newInstance();
+      Transformer transformer = transformerFactory.newTransformer();
+      DOMSource source = new DOMSource(myDoc);
+      StreamResult streamResult = new StreamResult(new File(myPath));
+      transformer.transform(source, streamResult);
+      
+      result = true;
+      
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    
+    return result;
+    
   }
   
- 
+  private Element createElement(String name, String value){
+    
+    Element result = myDoc.createElement(name);
+    result.appendChild(myDoc.createTextNode(value));
+    
+    return result;
+    
+  }
+  
+  public void close(){
+    // useless because of the garbage collector and no stream
+  }
+  
 }

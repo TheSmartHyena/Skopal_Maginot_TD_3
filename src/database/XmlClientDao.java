@@ -35,12 +35,12 @@ public class XmlClientDao implements IClientDao {
   }
 
   @Override
-  public void create(Client objet) {
+  public void create(Client toCreate) {
     // TODO Auto-generated method stub
     try{
       myXmlTools.open();
-      
-      myXmlTools.close();
+      boolean result = myXmlTools.createClient(toCreate);
+
     }catch(Exception e){
       System.out.println(e);
     }
@@ -58,7 +58,7 @@ public class XmlClientDao implements IClientDao {
     // TODO Auto-generated method stub
 
   }
-
+  
   @Override
   public Client read() {
     // TODO Auto-generated method stub
@@ -100,5 +100,5 @@ public class XmlClientDao implements IClientDao {
     return result;
     
   }
-
+  
 }

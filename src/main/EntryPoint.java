@@ -44,13 +44,23 @@ public class EntryPoint {
 		}*/
     
     // GetById()
-    /*
-    Client client = daos.getClientDao().getClientById("2");
+    
+    /*Client client = daos.getClientDao().getClientById("5");
     if(client != null){
       System.out.println(client.getId() + " " + client.getNom() + " "  + client.getPrenom());
     }else{
       System.out.println("Null client");
     }*/
+    
+    // Create an element
+    /*Client toCreate = factory.ClientFactory.getClient(PHYSIQUE, "Hector", "Poivrot");
+        
+    toCreate.setId("5");
+    ((PersonnePhysique)toCreate).setAge(88);
+    
+    daos.getClientDao().create(toCreate);*/
+    
+    // Update
 
 	}
 

@@ -1,6 +1,4 @@
-<?xml version = "1.0"?>
-<clients>
-  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><clients>
    <client id="1">
       <prenom> Stéphane</prenom>
       <nom> JOYEUX</nom>
@@ -22,4 +20,4 @@
       <codeInsee> 3630 </codeInsee>
    </client>
    
-</clients>
+<client id="5"><nom>Hector</nom><prenom>Poivrot</prenom><age>88</age><type>physique</type></client></clients>
