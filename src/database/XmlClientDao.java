@@ -54,9 +54,15 @@ public class XmlClientDao implements IClientDao {
   }
 
   @Override
-  public void delete(Client objet) {
-    // TODO Auto-generated method stub
-
+  public void delete(Client objet) {    
+    try{
+      
+      myXmlTools.open();
+      boolean result = myXmlTools.deleteClient(objet.getId());
+      
+    }catch(Exception e){
+      System.out.println(e);
+    }
   }
   
   @Override

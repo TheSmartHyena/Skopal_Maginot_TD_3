@@ -60,7 +60,16 @@ public class EntryPoint {
     
     daos.getClientDao().create(toCreate);*/
     
-    // Update
+    // delete
+    /*
+    Client toCreate = factory.ClientFactory.getClient(MORALE, "PouetPouet", "Mdr");
+    toCreate.setId("68");
+    ((PersonneMorale)toCreate).setCodeInsee("68000");
+    daos.getClientDao().create(toCreate);
+    
+    Client toDelete = daos.getClientDao().getClientById("68");
+    
+    daos.getClientDao().delete(toDelete);*/
 
 	}
 

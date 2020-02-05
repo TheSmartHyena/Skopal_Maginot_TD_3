@@ -179,16 +179,13 @@ public class XmlTools{
         client.appendChild(createElement("type", "physique"));
       }else if(toCreate instanceof PersonneMorale){
         client.appendChild(createElement("codeInsee", ((PersonneMorale)toCreate).getCodeInsee()));
-        client.appendChild(createElement("prenom", "morale"));
+        client.appendChild(createElement("type", "morale"));
       }
       
       // Write the new file
-      TransformerFactory transformerFactory = TransformerFactory.newInstance();
-      Transformer transformer = transformerFactory.newTransformer();
-      DOMSource source = new DOMSource(myDoc);
-      StreamResult streamResult = new StreamResult(new File(myPath));
-      transformer.transform(source, streamResult);
+      this.writeFile();
       
+      System.out.println("Client created");
       result = true;
       
     }catch(Exception e){
@@ -205,6 +202,55 @@ public class XmlTools{
     result.appendChild(myDoc.createTextNode(value));
     
     return result;
+    
+  }
+  
+  public boolean deleteClient(String toDeleteId){
+    
+    boolean result = false;
+    
+    // Itération de la liste des nodes 
+    for (int i=0; i < myNodeList.getLength(); i++) {
+      Node node = myNodeList.item(i);
+      if (node.getNodeType() == Node.ELEMENT_NODE) {
+        Element el = (Element) node;
+ 
+        String id = el.getAttribute("id").trim();
+        if(toDeleteId.equals(id)){  
+          try{
+            
+            // Supprime le node qui corespond
+            node.getParentNode().removeChild(node);
+            result = true;
+            
+          }catch(Exception e){
+            e.printStackTrace();
+          }
+
+        }                     
+      }      
+    }    
+    
+    // Met à jour le fichier xml
+    this.writeFile();
+    System.out.println("Client deleted");
+    
+    return result;
+    
+  }
+  
+  private void writeFile(){
+    
+    // Write the new file
+    try{
+      TransformerFactory transformerFactory = TransformerFactory.newInstance();
+      Transformer transformer = transformerFactory.newTransformer();
+      DOMSource source = new DOMSource(myDoc);
+      StreamResult streamResult = new StreamResult(new File(myPath));
+      transformer.transform(source, streamResult);
+    }catch(Exception e){
+      System.out.println(e);
+    }
     
   }
   

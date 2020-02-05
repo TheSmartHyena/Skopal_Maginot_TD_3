@@ -19,5 +19,4 @@
       <type> morale </type>
       <codeInsee> 3630 </codeInsee>
    </client>
-   
-<client id="5"><nom>Hector</nom><prenom>Poivrot</prenom><age>88</age><type>physique</type></client></clients>
+</clients>
