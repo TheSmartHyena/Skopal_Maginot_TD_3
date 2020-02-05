@@ -9,63 +9,84 @@ import java.util.List;
 import factory.ClientFactory;
 import interfaces.dao.IClientDao;
 import modele.Client;
+import xml.XmlTools;
 
 public class XmlClientDao implements IClientDao {
 
-	private static XmlClientDao instance;
+  private static XmlClientDao instance;
+  private XmlTools myXmlTools;
+  
+  private XmlClientDao() {
+    
+    try{
+      myXmlTools = new XmlTools("src/database/xml/xmlDatabase.xml");
+    }catch(Exception e){
+      System.out.println(e);
+    }
 
-	private XmlClientDao() {
+  }
 
-	}
+  public static XmlClientDao getInstance() {
+    System.out.println("XmlClientDao !");
+    if (instance == null) {
+      instance = new XmlClientDao();
+    }
+    return instance;
+  }
 
-	public static XmlClientDao getInstance() {
-		System.out.println("XmlClientDao !");
-		if (instance == null) {
-			instance = new XmlClientDao();
-		}
-		return instance;
-	}
+  @Override
+  public void create(Client objet) {
+    // TODO Auto-generated method stub
+    try{
+      myXmlTools.open();
+      
+      myXmlTools.close();
+    }catch(Exception e){
+      System.out.println(e);
+    }
 
-	@Override
-	public void create(Client objet) {
-		// TODO Auto-generated method stub
+  }
 
-	}
+  @Override
+  public void update(Client objet) {
+    // TODO Auto-generated method stub
 
-	@Override
-	public void update(Client objet) {
-		// TODO Auto-generated method stub
+  }
 
-	}
+  @Override
+  public void delete(Client objet) {
+    // TODO Auto-generated method stub
 
-	@Override
-	public void delete(Client objet) {
-		// TODO Auto-generated method stub
+  }
 
-	}
+  @Override
+  public Client read() {
+    // TODO Auto-generated method stub
 
-	@Override
-	public Client read() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    return null;
+  }
 
-	@Override
-	public List<Client> getList() {
-		List<Client> clients = new ArrayList<>();
-		try {
-			clients.add(ClientFactory.getClient(MORALE, "JOYEUX", "STEPHANE"));
-			clients.add(ClientFactory.getClient(PHYSIQUE, "JOYEUX", "LUCAS"));
-			clients.add(ClientFactory.getClient(PHYSIQUE, "JOYEUX", "JULIE"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return clients;
-	}
+  @Override
+  public List<Client> getList() {
+    
+    List<Client> result = null;
+    
+    try{
+      
+      myXmlTools.open();
+      result = myXmlTools.getList();
+      myXmlTools.close();
+      
+    }catch(Exception e){
+      System.out.println(e);
+    }
+    
+    return result;
+  }
 
-	@Override
-	public Client getClientById(int id) {
-		return null;
-	}
+  @Override
+  public Client getClientById(int id) {
+      return null;
+  }
 
 }

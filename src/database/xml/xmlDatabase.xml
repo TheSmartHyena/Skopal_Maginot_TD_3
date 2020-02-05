@@ -1,0 +1,25 @@
+<?xml version = "1.0"?>
+<clients>
+  
+   <client id="1">
+      <prenom> Stéphane</prenom>
+      <nom> JOYEUX</nom>
+      <type> physique </type>
+      <age> 42 </age>
+   </client>
+  
+  <client id="2">
+      <prenom> Lucas</prenom>
+      <nom> JOYEUX</nom>
+      <type> physique </type>
+      <age> 12 </age>
+   </client>
+  
+  <client id="3">
+      <prenom> Metz  </prenom>
+      <nom> Spa </nom>
+      <type> morale </type>
+      <codeInsee> 3630 </codeInsee>
+   </client>
+   
+</clients>

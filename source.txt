@@ -15,6 +15,9 @@
 ./src/database/mysql/ConnectionMySql.java
 ./src/database/mysql/DataBaseMySql.java
 ./src/database/XmlClientDao.java
+./src/database/xml/XmlTools.java
+./src/database/xml/IncorrectXmlToolsInstanciationException.java
+./src/database/xml/WrongClientTypeException.java
 ./src/database/DatabaseMockManager.java
 ./src/database/MemoryClientDao.java
 ./src/database/TestDaoFactory.java

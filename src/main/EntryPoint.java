@@ -21,14 +21,18 @@ public class EntryPoint {
 		System.out.println("-------> III. Partie DAO : ");
 		
     DaoFactory daos = DaoFactory.getDaoFactory(EPersistance.XML);
-		List<Client> clients = daos.getClientDao().getList();
+		//List<Client> clients = daos.getClientDao().getList();
     
-    System.out.println(clients.size());
+    //System.out.println(clients.size());
+    //Client testClient = getClient(PHYSIQUE, "JOYEUX", "LUCAS");
     
-		/*for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
+    // daos.getClientDao().read(2);
+    List<Client> clients = daos.getClientDao().getList();
+    
+		for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
 			System.out.println(client.getNom() + " "  + client.getPrenom());
-		}*/
+		}
     
     
     
