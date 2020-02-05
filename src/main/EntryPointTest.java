@@ -13,7 +13,7 @@ import factory.DaoFactory;
 import modele.Client;
 import vue.ClientVue;
 
-public class EntryPoint {
+public class EntryPointTest {
 
 	public static void main(String[] args) throws Exception {
     
@@ -32,7 +32,7 @@ public class EntryPoint {
 		//controleur.getVue().afficherList();
 
 		System.out.println("");
-		System.out.println("-------> III. Partie DAO : ");
+		System.out.println("-------> III. Partie Test du DAO : ");
 		
     DaoFactory daos = DaoFactory.getDaoFactory(EPersistance.MEMORY);
     

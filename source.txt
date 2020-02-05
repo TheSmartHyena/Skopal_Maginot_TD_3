@@ -22,6 +22,7 @@
 ./src/interfaces/vue/IVue.java
 ./src/enumerations/persistance/EPersistance.java
 ./src/enumerations/client/ETypeClient.java
+./src/main/EntryPointTest.java
 ./src/main/EntryPoint.java
 ./src/dao/ClientDao.java
 ./src/controleur/ClientControleur.java

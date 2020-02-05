@@ -55,8 +55,8 @@ public class MemoryClientDao implements IClientDao {
 		List<Client> clients = new ArrayList<>();
 		try {
 			clients.add(ClientFactory.getClient(MORALE, "JOYEUX", "STEPHANE"));
-			clients.add(ClientFactory.getClient(PHYSIQUE, "JOYEUX", "LUCAS"));
-			clients.add(ClientFactory.getClient(PHYSIQUE, "JOYEUX", "JULIE"));
+			//clients.add(ClientFactory.getClient(PHYSIQUE, "JOYEUX", "LUCAS"));
+			//clients.add(ClientFactory.getClient(PHYSIQUE, "JOYEUX", "JULIE"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
