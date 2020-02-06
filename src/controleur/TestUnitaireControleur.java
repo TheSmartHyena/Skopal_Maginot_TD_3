@@ -4,8 +4,21 @@ import java.util.List;
 
 import interfaces.vue.IVueTestUnitaireCrud;
 import modele.Client;
+import static enumerations.client.ETypeClient.MORALE;
+import static enumerations.client.ETypeClient.PHYSIQUE;
+import interfaces.dao.IClientDao;
+import database.XmlClientDao;
+import static factory.ClientFactory.getClient;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class TestUnitaireControleur {
+  
+  private IClientDao daoClient;
 
 	// Le contrôleur connait sa vue :
 	private IVueTestUnitaireCrud vue;
@@ -24,7 +37,22 @@ public class TestUnitaireControleur {
   }
   
   public boolean testGetClientById(){
-    return true;
+    
+    boolean result = false;
+    
+		daoClient = mock(XmlClientDao.class);
+		
+
+		//assertNotNull(daoClient.getClientById("5"));    
+    /*try{
+      when(daoClient.getClientById("5")).thenReturn(getClient("5", MORALE, "JOYEUX", "STEPHANE", "42"));
+		  assertEquals("5", daoClient.getClientById("5").getId());
+      result = true;
+    }catch(AssertionError e){
+      result = false;
+    }*/
+      
+    return result;
   }
   
   public boolean testCreate(){
