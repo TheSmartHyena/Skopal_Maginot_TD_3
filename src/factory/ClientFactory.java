@@ -12,29 +12,33 @@ public class ClientFactory {
 
 	}
 
-	public static Client getClient(ETypeClient typeClient, String nom, String prenom) throws Exception {
+	public static Client getClient(String id, ETypeClient typeClient, String nom, String prenom, String mystere) throws Exception {
 		switch (typeClient) {
 		case MORALE:
-			return createPersonneMorale(nom, prenom);
+			return createPersonneMorale(id, nom, prenom, mystere);
 		case PHYSIQUE:
-			return createPersonnePhysique(nom, prenom);
+			return createPersonnePhysique(id, nom, prenom, Integer.parseInt(mystere));
 		default:
 			throw new Exception("Type de client Inconnu");
 		}
 
 	}
 
-	private static Client createPersonneMorale(String nom, String prenom) {
+	private static Client createPersonneMorale(String id, String nom, String prenom, String codeInsee) {
 		PersonneMorale client = new PersonneMorale();
 		client.setNom(nom);
 		client.setPrenom(prenom);
+    client.setId(id);
+    client.setCodeInsee(codeInsee);
 		return client;
 	}
 
-	private static Client createPersonnePhysique(String nom, String prenom) {
+	private static Client createPersonnePhysique(String id, String nom, String prenom, int age) {
 		PersonnePhysique client = new PersonnePhysique();
 		client.setNom(nom);
 		client.setPrenom(prenom);
+    client.setAge(age);
+    client.setId(id);
 		return client;
 	}
 

@@ -27,7 +27,6 @@ public class XmlClientDao implements IClientDao {
   }
 
   public static XmlClientDao getInstance() {
-    System.out.println("XmlClientDao !");
     if (instance == null) {
       instance = new XmlClientDao();
     }

@@ -11,9 +11,6 @@ public abstract class DaoFactory {
 		case MEMORY:
 			daoF = new MemoryDaoFactory();
 			break;
-		case MYSQL:
-			daoF = new MySqlDaoFactory();
-			break;
 		case XML:
         daoF = new XmlDaoFactory();
 			//throw new Exception("Not yet implemented");

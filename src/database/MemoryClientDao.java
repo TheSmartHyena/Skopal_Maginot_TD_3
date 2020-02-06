@@ -19,7 +19,6 @@ public class MemoryClientDao implements IClientDao {
 	}
 
 	public static MemoryClientDao getInstance() {
-		System.out.println("MemoryClientDao !");
 		if (instance == null) {
 			instance = new MemoryClientDao();
 		}
@@ -54,9 +53,12 @@ public class MemoryClientDao implements IClientDao {
 	public List<Client> getList() {
 		List<Client> clients = new ArrayList<>();
 		try {
-			clients.add(ClientFactory.getClient(MORALE, "JOYEUX", "STEPHANE"));
-			//clients.add(ClientFactory.getClient(PHYSIQUE, "JOYEUX", "LUCAS"));
-			//clients.add(ClientFactory.getClient(PHYSIQUE, "JOYEUX", "JULIE"));
+      
+			clients.add(ClientFactory.getClient("1", MORALE, "JOYEUX", "STEPHANE", "42"));
+			clients.add(ClientFactory.getClient("2", PHYSIQUE, "JOYEUX", "LUCAS", "10"));
+			clients.add(ClientFactory.getClient("3", PHYSIQUE, "JOYEUX", "JULIE", "10"));
+      clients.add(ClientFactory.getClient("5", PHYSIQUE, "Noel", "Père", "300"));
+      
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,7 +67,19 @@ public class MemoryClientDao implements IClientDao {
 
 	@Override
 	public Client getClientById(String id) {
-		return null;
-	}
+      
+    Client result = null; 
+    List<Client> clients = this.getList();
+    for (int i=0; i < clients.size(); i++) {
+      Client client = clients.get(i);
 
+      if(client.getId().equals(id)){
+        result = client;
+        break;
+      }
+      
+    }
+    return result;
+	}
+  
 }

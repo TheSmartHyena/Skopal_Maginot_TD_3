@@ -55,9 +55,7 @@ public class XmlTools{
     myPath = newPath;
   }
   
-  public void open(){
-    System.out.println("Opening:" + myPath);
-    
+  public void open(){    
     try {
       
       File inputFile = new File(myPath);
@@ -88,15 +86,11 @@ public class XmlTools{
         String prenom = el.getElementsByTagName("prenom").item(0).getTextContent().trim();
         String type = el.getElementsByTagName("type").item(0).getTextContent().trim();    
         String id = el.getAttribute("id").trim();
-        
+                
         if(type.equals("morale")){  
           try{
-            Client client = getClient(ETypeClient.MORALE, nom, prenom);
-            client.setId(id);
-            
             String codeInsee = el.getElementsByTagName("codeInsee").item(0).getTextContent().trim();
-            ((PersonneMorale)client).setCodeInsee(codeInsee);
-            
+            Client client = getClient(id, ETypeClient.MORALE, nom, prenom, codeInsee);                        
             result.add(client);
           }catch(Exception e){
             e.printStackTrace();
@@ -104,12 +98,8 @@ public class XmlTools{
 
         }else if(type.equals("physique")){
           try{            
-            Client client = getClient(ETypeClient.PHYSIQUE, nom, prenom);   
-            client.setId(id);
-            
             String age = el.getElementsByTagName("age").item(0).getTextContent().trim();
-            ((PersonnePhysique)client).setAge(Integer.parseInt(age));
-            
+            Client client = getClient(id, ETypeClient.PHYSIQUE, nom, prenom, age);               
             result.add(client);
           }catch(Exception e){
             e.printStackTrace();
@@ -133,20 +123,22 @@ public class XmlTools{
     List<Client> clients = null;
     
     try{
-      clients = this.getList();
+      clients = this.getList();      
+      for (int i=0; i < clients.size(); i++) {
+        Client client = clients.get(i);
+
+        if(client.getId().equals(id)){
+          result = client;
+          break;
+        }
+      
+    }
+      
     }catch(Exception e){
       e.printStackTrace();
     }
       
-    for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
-			Client client = (Client) iterator.next();
-            
-      if(client.getId().equals(id)){
-        result = client;
-        break;
-      }
-      
-    }
+
     
     return result;
     
@@ -184,8 +176,6 @@ public class XmlTools{
       
       // Write the new file
       this.writeFile();
-      
-      System.out.println("Client created");
       result = true;
       
     }catch(Exception e){
@@ -233,8 +223,6 @@ public class XmlTools{
     
     // Met à jour le fichier xml
     this.writeFile();
-    System.out.println("Client deleted");
-    
     return result;
     
   }
@@ -264,9 +252,7 @@ public class XmlTools{
       }      
     }   
     
-    this.writeFile();
-    System.out.println("Client updated");
-    
+    this.writeFile();    
     return result;
     
   }
@@ -285,8 +271,6 @@ public class XmlTools{
         Node childNode = list.item(temp);
         if (childNode.getNodeType() == Node.ELEMENT_NODE) {
           Element childEl = (Element) childNode;
-          
-          System.out.println(childEl.getNodeName());
           
           if("nom".equals(childEl.getNodeName())) {
             childEl.setTextContent(toUpdate.getNom());
@@ -323,7 +307,7 @@ public class XmlTools{
       StreamResult streamResult = new StreamResult(new File(myPath));
       transformer.transform(source, streamResult);
     }catch(Exception e){
-      System.out.println(e);
+      e.printStackTrace();
     }
     
   }

@@ -17,7 +17,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import database.mysql.MySqlClientDao;
 import database.MemoryClientDao;
 import factory.ClientFactory;
 import factory.DaoFactory;
@@ -50,7 +49,7 @@ public class TestDaoFactory {
 	public void testGetClientByIdAvecMockito() throws Exception {
     System.out.println("Je passe par: testGetClientByIdAvecMockito");
 		daoClient = mock(MemoryClientDao.class);
-		when(daoClient.getClientById("drg")).thenReturn(getClient(MORALE, "JOYEUX", "STEPHANE"));
+		when(daoClient.getClientById("drg")).thenReturn(getClient("1", MORALE, "JOYEUX", "STEPHANE", "42"));
     
 		assertNotNull(daoClient.getClientById("1"));
     
@@ -72,8 +71,8 @@ public class TestDaoFactory {
 
 	private List<Client> createClients() throws Exception {
 		List<Client> clients = new ArrayList<>();
-		clients.add(ClientFactory.getClient(MORALE, "JOYEUX", "STEPHANE"));
-		clients.add(ClientFactory.getClient(PHYSIQUE, "JOYEUX", "LUCAS"));
+		clients.add(ClientFactory.getClient("1", MORALE, "JOYEUX", "STEPHANE", "42"));
+		clients.add(ClientFactory.getClient("2", MORALE, "JOYEUX", "STEPHANE", "10"));
 		return clients;
 	}
 }
